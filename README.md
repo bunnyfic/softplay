@@ -8,7 +8,7 @@
 
 <br>
 
-`ʚᵗ᷒ᰰɞ`
+`ʚᵗ᷒ᰰɞ` link : https://softplay.pages.dev/
 
 <br>
 
