@@ -2,7 +2,7 @@
   const $ = s => document.querySelector(s);
   const audio = $('#audio');
   const S = { tracks: [], cur: -1, shuffle: false, repeat: 0, sleepIdx: 0, sleepTimer: null, wake: null, wantWake: false, pal: 0, armed: false };
-  const PAL = ['blush', 'lilac', 'champagne', 'sage'];
+  const PAL = ['kitty', 'lilac', 'peach', 'mint'];
   const SLEEP = [0, 15, 30, 60];
 
   const fmt = s => { if (!isFinite(s)) s = 0; s = Math.max(0, Math.floor(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
@@ -307,7 +307,8 @@
 
   /* queue sheet */
   const scrim = $('#scrim');
-  $('#bQueue').onclick = () => { scrim.hidden = false; renderList(); };
+  const openQ = () => { scrim.hidden = false; renderList(); };
+  $('#bQueue').onclick = openQ;
   scrim.addEventListener('click', e => { if (e.target === scrim) scrim.hidden = true; });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') scrim.hidden = true;
