@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f9d9e3">
+<meta name="theme-color" content="#e3e0e8">
 <title>Softplay</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Pinyon+Script&family=Quicksand:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@300;500;600;700&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,6 +30,10 @@
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.200" fill="currentColor"/><g stroke="currentColor" stroke-width="2.200" stroke-linecap="round"><path d="M12 2.800v2M12 19.200v2M2.800 12h2M19.200 12h2M5.500 5.500l1.400 1.400M17.100 17.100l1.400 1.400M5.500 18.500l1.400-1.400M17.100 6.900l1.400-1.400"/></g></symbol>
     <symbol id="i-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"><path d="M4.500 7h15M9.500 7V4.200h5V7M6.500 7l.9 12.500h9.200L17.500 7"/></g></symbol>
     <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.600" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.300" stroke-linecap="round"><path d="M9.500 6.500H20M9.500 12H20M9.500 17.500H20"/></g><g fill="currentColor"><circle cx="4.800" cy="6.500" r="1.500"/><circle cx="4.800" cy="12" r="1.500"/><circle cx="4.800" cy="17.500" r="1.500"/></g></symbol>
+    <g id="paw-g"><path d="M50 44c-13 0-25 10-27 24-1.500 11 6 17 16 16 4.500-.5 7.500-3 11-3s6.500 2.500 11 3c10 1 17.500-5 16-16-2-14-14-24-27-24z"/><ellipse cx="19" cy="45" rx="10" ry="12.500" transform="rotate(-22 19 45)"/><ellipse cx="37" cy="24" rx="11" ry="13.500" transform="rotate(-8 37 24)"/><ellipse cx="63" cy="24" rx="11" ry="13.500" transform="rotate(8 63 24)"/><ellipse cx="81" cy="45" rx="10" ry="12.500" transform="rotate(22 81 45)"/></g>
+    <symbol id="paw" viewBox="4 6 92 82"><use href="#paw-g" style="fill:#fff;stroke:#fff;stroke-width:6;stroke-linejoin:round"/><use href="#paw-g" style="fill:var(--pawfill);stroke:none"/></symbol>
+    <symbol id="paw-mini" viewBox="4 6 92 82"><use href="#paw-g" style="fill:currentColor"/></symbol>
   </defs>
 </svg>
 
@@ -43,21 +47,28 @@
   </header>
 
   <section class="grid" aria-label="Music controls">
-    <button class="orb" id="bShuffle" aria-pressed="false" aria-label="Shuffle"><svg class="ic"><use href="#i-bow"/></svg></button>
-    <button class="orb" id="bRepeat" aria-label="Repeat: off"><svg class="ic"><use href="#i-repeat"/></svg><span class="badge" id="repBadge" hidden>1</span></button>
-    <button class="orb" id="bLike" aria-pressed="false" aria-label="Like this song"><svg class="ic"><use href="#i-heart"/></svg></button>
-    <button class="orb" id="bMute" aria-pressed="false" aria-label="Mute"><span class="eq" id="eq"><span></span><span></span><span></span><span></span></span></button>
+    <button class="paw" id="bShuffle" aria-label="Shuffle" aria-pressed="false"><svg class="pawbg" aria-hidden="true"><use href="#paw"/></svg><svg class="ic"><use href="#i-bow"/></svg></button>
+    <button class="paw" id="bRepeat" aria-label="Repeat: off"><svg class="pawbg" aria-hidden="true"><use href="#paw"/></svg><svg class="ic"><use href="#i-repeat"/></svg><span class="badge" id="repBadge" hidden>1</span></button>
+    <button class="paw" id="bLike" aria-label="Like this song" aria-pressed="false"><svg class="pawbg" aria-hidden="true"><use href="#paw"/></svg><svg class="ic"><use href="#i-heart"/></svg></button>
+    <button class="paw" id="bMute" aria-label="Mute" aria-pressed="false"><svg class="pawbg" aria-hidden="true"><use href="#paw"/></svg><span class="eq" id="eq"><span></span><span></span><span></span><span></span></span></button>
 
-    <div class="np" aria-live="polite">
-      <svg class="ic"><use href="#i-note"/></svg>
-      <div><small id="npLabel">up next</small><b id="npTitle">nothing yet</b><span id="npArtist">add songs to start</span></div>
+    <div class="cat np fill" aria-live="polite">
+      <i class="ear l"></i><i class="ear r"></i>
+      <svg class="bowtop pinkbow" aria-hidden="true"><use href="#i-bow"/></svg>
+      <div class="cat-body npbody">
+        <svg class="ic"><use href="#i-note"/></svg>
+        <div><small id="npLabel">up next</small><b id="npTitle">nothing yet</b><span id="npArtist">add songs to start</span></div>
+      </div>
     </div>
 
-    <article class="player glass">
-      <div class="artwrap"><div class="art" id="art">
-        <img id="cover" alt="" hidden>
-        <div class="ph" id="ph"><svg class="ic"><use href="#i-note"/></svg></div>
-      </div><svg class="ribbon" aria-hidden="true"><use href="#i-bow"/></svg></div>
+    <article class="player">
+      <div class="artwrap">
+        <div class="art" id="art">
+          <img id="cover" alt="" hidden>
+          <div class="ph" id="ph"><svg class="ic"><use href="#i-note"/></svg></div>
+        </div>
+        <svg class="ribbon" aria-hidden="true"><use href="#i-bow"/></svg>
+      </div>
       <div class="meta">
         <div class="title" id="title">nothing playing</div>
         <div class="artist" id="artist">your songs, softly</div>
@@ -72,25 +83,33 @@
       </div>
     </article>
 
-    <div class="vs glass" id="volS" role="slider" tabindex="0" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80">
-      <div class="vs-fill"></div><div class="vs-val" id="volVal">80</div><div class="vs-cap">vol</div>
-      <svg class="ic"><use href="#i-vol"/></svg>
+    <div class="cat vs" id="volS" role="slider" tabindex="0" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80">
+      <i class="ear l"></i><i class="ear r"></i>
+      <svg class="bowtop blackbow" aria-hidden="true"><use href="#i-bow"/></svg>
+      <div class="cat-body vsbody"><div class="vs-fill"></div><div class="vs-val" id="volVal">80</div><div class="vs-cap">vol</div><svg class="ic"><use href="#i-vol"/></svg></div>
     </div>
-    <div class="vs glass" id="spdS" role="slider" tabindex="0" aria-label="Playback speed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-      <div class="vs-fill"></div><div class="vs-val" id="spdVal">1.0×</div><div class="vs-cap">speed</div>
-      <svg class="ic"><use href="#i-gauge"/></svg>
+    <div class="cat vs" id="spdS" role="slider" tabindex="0" aria-label="Playback speed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      <i class="ear l"></i><i class="ear r"></i>
+      <svg class="bowtop blackbow" aria-hidden="true"><use href="#i-bow"/></svg>
+      <div class="cat-body vsbody"><div class="vs-fill"></div><div class="vs-val" id="spdVal">1.0×</div><div class="vs-cap">speed</div><svg class="ic"><use href="#i-gauge"/></svg></div>
     </div>
 
-    <button class="pill" id="bQueue" aria-label="Open queue"><span class="deco" aria-hidden="true">ʚᵗ᷒ᰰɞ</span><span class="qt"><b>library</b><span id="qCount">0 songs</span></span></button>
-    <button class="pill glass" id="bSleep" aria-label="Sleep timer"><span class="moon"><svg class="ic"><use href="#i-moon"/></svg></span><span class="lbl" id="sleepLabel">sleep</span><svg class="ic chev"><use href="#i-chev"/></svg></button>
+    <button class="cat pill deep" id="bQueue" aria-label="Open library" type="button">
+      <i class="ear l"></i><i class="ear r"></i>
+      <span class="cat-body pillbody"><span class="deco" aria-hidden="true">ʚᵗ᷒ᰰɞ</span><span class="qt"><b>library</b><span id="qCount">0 songs</span></span></span>
+    </button>
+    <button class="cat pill" id="bSleep" aria-label="Sleep timer" type="button">
+      <i class="ear l"></i><i class="ear r"></i>
+      <span class="cat-body pillbody"><span class="moon"><svg class="ic"><use href="#i-moon"/></svg></span><span class="lbl" id="sleepLabel">sleep</span><span class="chev"><svg class="ic"><use href="#i-chev"/></svg></span></span>
+    </button>
 
-    <button class="orb" id="bAdd" aria-label="Add songs from your phone"><svg class="ic"><use href="#i-tulip"/></svg></button>
-    <button class="orb" id="bSun" aria-pressed="false" aria-label="Keep screen awake"><svg class="ic"><use href="#i-sun"/></svg></button>
-    <button class="orb" id="bTheme" aria-label="Change colors"><svg class="ic"><use href="#i-butterfly"/></svg></button>
-    <button class="orb" id="bClear" aria-label="Clear library"><svg class="ic"><use href="#i-trash"/></svg></button>
+    <button class="paw" id="bAdd" aria-label="Add songs from your phone"><svg class="pawbg" aria-hidden="true"><use href="#paw"/></svg><svg class="ic"><use href="#i-tulip"/></svg></button>
+    <button class="paw" id="bSun" aria-label="Keep screen awake" aria-pressed="false"><svg class="pawbg" aria-hidden="true"><use href="#paw"/></svg><svg class="ic"><use href="#i-sun"/></svg></button>
+    <button class="paw" id="bTheme" aria-label="Change colors"><svg class="pawbg" aria-hidden="true"><use href="#paw"/></svg><svg class="ic"><use href="#i-butterfly"/></svg></button>
+    <button class="paw" id="bClear" aria-label="Clear library"><svg class="pawbg" aria-hidden="true"><use href="#paw"/></svg><svg class="ic"><use href="#i-trash"/></svg></button>
   </section>
 
-  <p class="hint">songs stay saved in this browser · files never leave your phone</p>
+  <p class="hint">saved in this browser · files stay on your phone</p>
 </main>
 
 <div class="scrim" id="scrim" hidden>
