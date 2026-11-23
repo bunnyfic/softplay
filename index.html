@@ -34,13 +34,38 @@
     <g id="paw-g"><path d="M50 44c-13 0-25 10-27 24-1.500 11 6 17 16 16 4.500-.5 7.500-3 11-3s6.500 2.500 11 3c10 1 17.500-5 16-16-2-14-14-24-27-24z"/><ellipse cx="19" cy="45" rx="10" ry="12.500" transform="rotate(-22 19 45)"/><ellipse cx="37" cy="24" rx="11" ry="13.500" transform="rotate(-8 37 24)"/><ellipse cx="63" cy="24" rx="11" ry="13.500" transform="rotate(8 63 24)"/><ellipse cx="81" cy="45" rx="10" ry="12.500" transform="rotate(22 81 45)"/></g>
     <symbol id="paw" viewBox="4 6 92 82"><use href="#paw-g" style="fill:#fff;stroke:#fff;stroke-width:6;stroke-linejoin:round"/><use href="#paw-g" style="fill:var(--pawfill);stroke:none"/></symbol>
     <symbol id="paw-mini" viewBox="4 6 92 82"><use href="#paw-g" style="fill:currentColor"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.200-4.200L16.600 4.400a2.100 2.100 0 0 1 3 3L8.200 18.800z"/><path d="m14.500 6.500 3 3"/></g></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.600" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path fill="currentColor" d="M4 8.500A2.500 2.500 0 0 1 6.500 6h1.700l1.300-2h5l1.300 2h1.700A2.500 2.500 0 0 1 20 8.500v8a2.500 2.500 0 0 1-2.500 2.500h-11A2.500 2.500 0 0 1 4 16.500z"/><circle cx="12" cy="12.600" r="3.400" fill="none" stroke="#fff" stroke-width="2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="m5 12.500 4.500 4.500L19 7.500"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.800" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-shift" viewBox="0 0 24 24"><path fill="currentColor" stroke="currentColor" stroke-width="1.500" stroke-linejoin="round" d="M12 4 4.500 12h4.200v7h6.600v-7h4.200z"/></symbol>
+    <symbol id="i-bs" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.100" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5.500h10.500a1.500 1.500 0 0 1 1.500 1.500v10a1.500 1.500 0 0 1-1.500 1.500H9l-6-6.500z"/><path d="m12.500 9.500 5 5M17.500 9.500l-5 5"/></g></symbol>
   </defs>
 </svg>
 
 <div class="ambient" aria-hidden="true"><img id="ambient" alt="" hidden></div>
 
+<div class="side-scrim" id="sideScrim" hidden></div>
+<aside class="side" id="side" aria-label="Playlists">
+  <div class="side-head">
+    <svg class="ic bow" aria-hidden="true"><use href="#i-bow"/></svg>
+    <span class="side-title">playlists</span>
+    <button class="side-x" id="sideClose" type="button" aria-label="Close playlists"><svg class="ic"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="pearls side-pearls" aria-hidden="true"></div>
+  <button class="side-row" id="sideAll" data-open="all" type="button">
+    <span class="thumb lg"><svg class="ic"><use href="#i-note"/></svg></span>
+    <span class="tx"><b>all songs</b><span id="allCount">0 songs</span></span>
+  </button>
+  <div class="side-label">your playlists</div>
+  <div class="side-list" id="plist"></div>
+  <button class="side-new" id="bNewList" type="button"><svg class="ic"><use href="#i-plus"/></svg><span>new playlist</span></button>
+</aside>
+
 <main class="deck">
   <header class="top">
+    <button class="menu" id="bMenu" type="button" aria-label="Open playlists" aria-expanded="false"><svg class="ic"><use href="#i-list"/></svg></button>
     <div class="brand"><svg class="ic"><use href="#i-bow"/></svg><span class="mark">softplay</span><svg class="ic"><use href="#i-bow"/></svg></div>
     <div class="pearls" aria-hidden="true"></div>
     <span class="status" id="status">0 songs</span>
@@ -113,15 +138,41 @@
 </main>
 
 <div class="scrim" id="scrim" hidden>
-  <div class="sheet" role="dialog" aria-label="Library">
+  <div class="sheet" id="sheet" role="dialog" aria-label="Songs">
     <div class="grab"></div>
-    <h2>your library</h2>
-    <div id="list"></div>
+    <div id="sheetHead"></div>
+    <div id="sheetList"></div>
+  </div>
+</div>
+
+<div class="scrim dlg" id="dlg" hidden>
+  <div class="card" role="dialog" aria-labelledby="dlgTitle">
+    <h3 id="dlgTitle">edit song</h3>
+    <button class="cvbtn big" id="dlgCover" type="button" aria-label="Change picture"><span class="cv" id="dlgCv"></span><span class="cam"><svg class="ic"><use href="#i-camera"/></svg></span></button>
+    <button class="linkbtn" id="dlgReset" type="button">reset picture</button>
+    <label class="fld"><span id="dlgALabel">title</span><input class="field" id="dlgA" data-kb inputmode="none" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="60"></label>
+    <label class="fld" id="dlgBWrap"><span>artist</span><input class="field" id="dlgB" data-kb inputmode="none" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="60"></label>
+    <div class="dlg-act">
+      <button class="btn danger" id="dlgDel" type="button">delete</button>
+      <span class="grow"></span>
+      <button class="btn ghost" id="dlgCancel" type="button">cancel</button>
+      <button class="btn primary" id="dlgSave" type="button">save</button>
+    </div>
+  </div>
+</div>
+
+<div class="scrim dlg" id="chooser" hidden>
+  <div class="card" role="dialog" aria-label="Add to playlist">
+    <h3>add to playlist</h3>
+    <p class="sub" id="chSong"></p>
+    <div class="ch-list" id="chList"></div>
+    <div class="dlg-act"><span class="grow"></span><button class="btn primary" id="chDone" type="button">done</button></div>
   </div>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <input type="file" id="file" accept="audio/*,.mp3,.m4a,.aac,.wav,.flac,.ogg,.opus" multiple hidden>
+<input type="file" id="imgFile" accept="image/*" hidden>
 <audio id="audio" preload="metadata" playsinline></audio>
 
 <script src="script.js"></script>
