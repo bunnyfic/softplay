@@ -7,8 +7,7 @@ a quiet little music player for the songs already on your phone
 <br> <img src="https://img.shields.io/badge/HTML5-FFB6C1?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
 <img src="https://img.shields.io/badge/CSS3-FFB6C1?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
 <img src="https://img.shields.io/badge/JavaScript-FFB6C1?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript">
-
-" alt="JavaScript">  <br>  · · · · · · · · · · · · · · · · · · · · ·
+ <br>  · · · · · · · · · · · · · · · · · · · · ·
 
 </div>  <br>  about
 
