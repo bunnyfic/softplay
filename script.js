@@ -609,7 +609,7 @@
     kbWord();
     if (KB.open) kbMeasure();
     const probe = KB.el.querySelector('.sk i');
-    if (probe && getComputedStyle(probe).backgroundImage === 'none') toast('keyboard art missing: upload skin.css next to index.html');
+    if (probe && getComputedStyle(probe).backgroundImage === 'none') toast('keyboard art missing: upload skin1.css, skin2.css, skin3.css');
   }
   function kbWord() {
     const w = document.getElementById('kbWord'), el = KB.target; if (!w || !el) return;
