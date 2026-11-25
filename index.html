@@ -8,10 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="style.css?v=6">
-<link rel="stylesheet" href="skin1.css?v=6">
-<link rel="stylesheet" href="skin2.css?v=6">
-<link rel="stylesheet" href="skin3.css?v=6">
+<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="skin1.css?v=11">
+<link rel="stylesheet" href="skin2.css?v=11">
+<link rel="stylesheet" href="skin3.css?v=11">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -104,22 +104,25 @@
       </div>
     </div>
 
-    <article class="player">
-      <div class="artwrap">
-        <div class="art" id="art">
-          <img id="cover" alt="" hidden>
-          <div class="ph" id="ph"><svg class="ic"><use href="#i-note"/></svg></div>
-        </div>
-        <svg class="ribbon" aria-hidden="true"><use href="#i-bow"/></svg>
+    <article class="player ears">
+      <div class="wheel">
+        <button class="wb up" id="bVolUp" type="button" aria-label="Volume up">+</button>
+        <button class="wb dn" id="bVolDn" type="button" aria-label="Volume down">&minus;</button>
+        <button class="wb lf" id="bPrev" type="button" aria-label="Previous"><svg class="ic"><use href="#i-prev"/></svg></button>
+        <button class="wb rt" id="bNext" type="button" aria-label="Next"><svg class="ic"><use href="#i-next"/></svg></button>
+        <button class="hub" id="bPlay" type="button" aria-label="Play"><svg class="ic"><use id="playUse" href="#i-play"/></svg></button>
       </div>
-      <div class="meta">
-        <div class="title" id="title">nothing playing</div>
-        <div class="artist" id="artist">your songs, softly</div>
-        <button class="cta" id="ctaAdd" type="button">+ add songs</button>
-        <div class="ctrls">
-          <button id="bPrev" aria-label="Previous"><svg class="ic"><use href="#i-prev"/></svg></button>
-          <button id="bPlay" aria-label="Play"><svg class="ic"><use id="playUse" href="#i-play"/></svg></button>
-          <button id="bNext" aria-label="Next"><svg class="ic"><use href="#i-next"/></svg></button>
+      <div class="lcd">
+        <div class="lcd-top">
+          <div class="art" id="art">
+            <img id="cover" alt="" hidden>
+            <div class="ph" id="ph"><svg class="ic"><use href="#i-note"/></svg></div>
+          </div>
+          <div class="meta">
+            <div class="title" id="title">nothing playing</div>
+            <div class="artist" id="artist">your songs, softly</div>
+            <button class="cta" id="ctaAdd" type="button">+ add songs</button>
+          </div>
         </div>
         <input class="scrub" id="scrub" type="range" min="0" max="1" step="any" value="0" aria-label="Seek">
         <div class="times"><span id="tCur">0:00</span><span id="tLeft">-0:00</span></div>
@@ -194,6 +197,6 @@
 <input type="file" id="imgFile" accept="image/*" hidden>
 <audio id="audio" preload="metadata" playsinline></audio>
 
-<script src="script.js?v=6"></script>
+<script src="script.js?v=11"></script>
 </body>
 </html>
