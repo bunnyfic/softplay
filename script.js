@@ -493,7 +493,7 @@
   });
 
   /* ---------- buttons ---------- */
-  document.addEventListener('click', e => { const b = e.target.closest('.paw'); if (!b) return; b.classList.add('flash'); setTimeout(() => b.classList.remove('flash'), 700); });
+  document.addEventListener('click', e => { const b = e.target.closest('.paw'); if (!b) return; b.classList.add('flash'); setTimeout(() => b.classList.remove('flash'), 700); if (!['bShuffle', 'bRepeat', 'bLike', 'bMute', 'bSun'].includes(b.id)) b.classList.toggle('lit'); });
   $('#bPlay').onclick = togglePlay;
   $('#bNext').onclick = () => advance(false);
   $('#bPrev').onclick = back;
@@ -608,6 +608,8 @@
     KB.el.innerHTML = `<div class="kbs"><div class="kbs-in${p === 'sym' ? ' sym' : ''}">${keys}</div></div>`;
     kbWord();
     if (KB.open) kbMeasure();
+    const probe = KB.el.querySelector('.sk i');
+    if (probe && getComputedStyle(probe).backgroundImage === 'none') toast('keyboard art missing: upload the newest style.css');
   }
   function kbWord() {
     const w = document.getElementById('kbWord'), el = KB.target; if (!w || !el) return;
