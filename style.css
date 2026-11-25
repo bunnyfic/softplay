@@ -1,6 +1,6 @@
 /* Softplay. Everything here is drawn to match the Pixel Kitten keyboard skin: white lace lattice, soft pink double borders, bear ears, gingham, pixel paws. */
 :root {
-  --bg:#fff8fb;  --lat:#ffa6c9;  --ring:#ffc2dc;  --ring2:#ffe1ee;  --tile-b:#ffeaf3;  --ging:#ffb0d2;  --ink:#8f3a66;  --ink-2:#e784ae;  --accent:#ff5c9f;  --accent-2:#ff9cc4;  --fill-a:#ffe3ee;  --fill-b:#ffb4d3;  --sheet:#fff6fa;  --glow:#ff93bf
+  --bg:#fff8fb;  --lat:#ffa6c9;  --ring:#ffc2dc;  --ring2:#ffe1ee;  --tile-b:#ffeaf3;  --ging:#ffb0d2;  --ink:#8f3a66;  --ink-2:#e784ae;  --accent:#ff5c9f;  --accent-2:#ff9cc4;  --fill-a:#ffe3ee;  --fill-b:#ffb4d3;  --sheet:#fff6fa;  --glow:#ff93bf;
   --hue: 0deg;
   --font-body: 'Zen Maru Gothic', ui-rounded, 'Hiragino Maru Gothic ProN', 'Segoe UI', system-ui, sans-serif;
   --font-display: 'DotGothic16', 'Zen Maru Gothic', ui-rounded, system-ui, sans-serif;
@@ -39,8 +39,8 @@ body::before {
     radial-gradient(circle at 70% 46%, color-mix(in srgb, var(--glow) 34%, transparent) 0 8px, transparent 26px),
     radial-gradient(circle at 8% 62%, color-mix(in srgb, var(--glow) 34%, transparent) 0 6px, transparent 22px),
     radial-gradient(circle at 46% 80%, color-mix(in srgb, var(--glow) 28%, transparent) 0 8px, transparent 28px),
-    repeating-linear-gradient(45deg, transparent 0 18px, color-mix(in srgb, var(--lat) 42%, transparent) 18px 20px),
-    repeating-linear-gradient(-45deg, transparent 0 18px, color-mix(in srgb, var(--lat) 42%, transparent) 18px 20px);
+    repeating-linear-gradient(45deg, transparent 0 18px, color-mix(in srgb, var(--lat) 30%, transparent) 18px 20px),
+    repeating-linear-gradient(-45deg, transparent 0 18px, color-mix(in srgb, var(--lat) 30%, transparent) 18px 20px);
 }
 button { font: inherit; color: inherit; border: 0; background: none; padding: 0; cursor: pointer; text-align: inherit; }
 a { text-decoration: none; }
@@ -72,15 +72,15 @@ h1, h2, h3 { font-weight: 400; }
 .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: 70px 70px auto minmax(84px, auto) minmax(84px, auto) 70px; column-gap: 14px; row-gap: 22px; margin-top: 12px; align-items: center; }
 
 /* paw buttons: the skin's own pixel paw, small and squishy */
-.paw { --s: 1; position: relative; display: block; width: 100%; max-width: 64px; justify-self: center; aspect-ratio: 118 / 94; color: #fff; transition: transform .18s cubic-bezier(.3,1.6,.5,1); }
+.paw { --s: 1; position: relative; display: block; width: 100%; max-width: 64px; color: var(--ink-2); justify-self: center; aspect-ratio: 118 / 94; transition: transform .18s cubic-bezier(.3,1.6,.5,1); }
 .paw:hover { transform: translateY(-2px); }
 .paw:active { transform: scale(.84, .8); }
-.pawbg { position: absolute; inset: 0; background: center / contain no-repeat; filter: hue-rotate(var(--hue)) drop-shadow(0 3px 3px color-mix(in srgb, var(--glow) 55%, transparent)); transition: filter .25s; }
-.paw .ic { position: absolute; left: 50%; top: 64%; width: 27%; height: 27%; transform: translate(-50%, -50%); filter: drop-shadow(0 1px 0 color-mix(in srgb, var(--accent) 55%, transparent)); }
+.pawbg { position: absolute; inset: 0; background: center / contain no-repeat; filter: hue-rotate(var(--hue)) saturate(.22) brightness(1.16) contrast(.96) drop-shadow(0 1px 0 #fff) drop-shadow(0 3px 3px rgba(125,90,120,.38)); transition: filter .25s; }
+.paw .ic { position: absolute; left: 50%; top: 64%; width: 27%; height: 27%; transform: translate(-50%, -50%); color: color-mix(in srgb, var(--ink-2) 55%, #9a9aae); filter: drop-shadow(0 1px 0 #fff); }
 .paw.on .pawbg, .paw.lit .pawbg, .paw.flash .pawbg, .paw:active .pawbg { filter: hue-rotate(var(--hue)) saturate(1.6) brightness(1.1) drop-shadow(0 0 2px #fff) drop-shadow(0 0 6px var(--accent)) drop-shadow(0 0 12px var(--accent)) drop-shadow(0 0 22px var(--accent)); }
 .paw::before { content: ""; position: absolute; inset: -22%; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 60%, transparent) 0, transparent 68%); opacity: 0; transition: opacity .25s; pointer-events: none; }
 .paw.on::before, .paw.lit::before, .paw.flash::before { opacity: 1; }
-.paw.on .ic, .paw.lit .ic, .paw.flash .ic { filter: drop-shadow(0 0 4px #fff); }
+.paw.on .ic, .paw.lit .ic, .paw.flash .ic { color: #fff; filter: drop-shadow(0 0 4px #fff); }
 .paw.on { animation: squish .35s; }
 .paw.armed .pawbg { filter: hue-rotate(var(--hue)) saturate(2.4) brightness(.9) drop-shadow(0 0 8px var(--accent)); }
 @keyframes squish { 40% { transform: scale(1.14, .88); } 70% { transform: scale(.94, 1.06); } }
@@ -104,7 +104,7 @@ h1, h2, h3 { font-weight: 400; }
 .cat.fill > .cat-body { flex: 1; }
 .cat .ear { position: absolute; top: -9px; width: 30px; height: 30px; border-radius: 50%; z-index: -1; background: var(--tile-b); border: 3px solid var(--ring); }
 .cat .ear.l { left: 16px; } .cat .ear.r { right: 16px; }
-.cat-body { position: relative; display: block; border-radius: 32px; border: 3px solid var(--ring); background: linear-gradient(180deg, #fff, var(--tile-b)); box-shadow: var(--white-ring); transition: transform .15s; }
+.cat-body { position: relative; display: block; border-radius: 32px; border: 3px solid var(--ring); background: linear-gradient(180deg, #fff 0%, var(--tile-b) 55%, color-mix(in srgb, var(--ring) 38%, var(--tile-b)) 100%); box-shadow: var(--white-ring), inset 0 -5px 8px color-mix(in srgb, var(--ring) 30%, transparent); transition: transform .15s; }
 .cat.deep .cat-body { background: repeating-conic-gradient(color-mix(in srgb, var(--ging) 60%, transparent) 0 25%, transparent 0 50%) 0 0 / 26px 26px, linear-gradient(180deg, #fff, var(--fill-a)); }
 button.cat:active .cat-body { transform: scale(.97); }
 .bowtop { position: absolute; z-index: 2; width: 34px; height: 34px; top: -17px; pointer-events: none; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff); }
@@ -125,36 +125,47 @@ button.cat:active .cat-body { transform: scale(.97); }
 .np b { display: block; font-family: var(--font-display); font-size: 19px; line-height: 1.15; font-weight: 400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--accent); }
 .np span { display: block; font-size: 13px; color: var(--ink-2); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* player */
-.player {
-  grid-area: 3 / 1 / 4 / 5; border-radius: 32px; padding: 14px; display: grid; grid-template-columns: 38% minmax(0, 1fr); gap: 14px; align-items: start;
-  background: linear-gradient(180deg, #fff, var(--tile-b)); border: 3px solid var(--ring); box-shadow: var(--white-ring), var(--lift);
-}
-.artwrap { position: relative; }
-.art { aspect-ratio: 1; border-radius: 22px; overflow: hidden; position: relative; width: 100%;
-  background: repeating-conic-gradient(color-mix(in srgb, var(--ging) 60%, transparent) 0 25%, transparent 0 50%) 0 0 / 24px 24px, linear-gradient(160deg, #fff, var(--fill-a));
-  border: 3px solid var(--ring); box-shadow: inset 0 0 0 2px #fff; }
+/* player: a pearl-silver capsule with a click wheel and a lilac glass display */
+.player { --m1: #fff; --m2: color-mix(in srgb, var(--tile-b) 45%, #f3f3f7); --m3: color-mix(in srgb, var(--ring) 50%, #cfcfd9); --m4: color-mix(in srgb, var(--ink-2) 40%, #a9a9bb); --lcd-a: color-mix(in srgb, var(--tile-b) 55%, #f1e8fb); --lcd-b: color-mix(in srgb, var(--ring) 40%, #e4d6f3);
+  grid-area: 3 / 1 / 4 / 5; position: relative; display: flex; align-items: center; gap: 12px; padding: 13px; margin-top: 4px; border-radius: 999px;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.3) 0 1px, transparent 1px 3px), linear-gradient(180deg, var(--m1) 0%, var(--m2) 50%, var(--m3) 100%);
+  border: 3px solid var(--m3);
+  box-shadow: inset 0 0 0 2px #fff, inset 0 -5px 9px color-mix(in srgb, var(--m4) 35%, transparent), 0 10px 20px color-mix(in srgb, var(--glow) 35%, transparent); }
+.player.ears::before, .player.ears::after { background: var(--m2); border-color: var(--m3); left: auto; right: auto; top: -13px; width: 30px; height: 30px; }
+.player.ears::before, .player.ears::after { display: none; }
+.ribbon { position: absolute; left: 6px; top: -14px; width: 38px; height: 38px; color: var(--ring); filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff); z-index: 2; pointer-events: none; }
+.wheel { position: relative; flex: none; width: 116px; height: 116px; border-radius: 50%; background: radial-gradient(circle at 50% 22%, #fff 0, var(--m1) 38%, var(--m2) 100%); border: 2.5px solid var(--m3);
+  box-shadow: inset 0 3px 3px #fff, inset 0 -6px 9px color-mix(in srgb, var(--m4) 32%, transparent), 0 3px 6px rgba(130,90,120,.28); }
+.wb { position: absolute; width: 34px; height: 34px; display: grid; place-items: center; color: var(--m4); text-shadow: 0 1px 0 #fff; font: 700 21px/1 var(--font-body); transition: transform .12s, color .15s; }
+.wb .ic { width: 20px; height: 20px; filter: drop-shadow(0 1px 0 #fff); }
+.wb.up { top: 4px; left: 50%; margin-left: -17px; } .wb.dn { bottom: 4px; left: 50%; margin-left: -17px; }
+.wb.lf { left: 4px; top: 50%; margin-top: -17px; } .wb.rt { right: 4px; top: 50%; margin-top: -17px; }
+.wb:active { transform: scale(.85); color: var(--accent); }
+.hub { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; margin: -26px 0 0 -26px; border-radius: 50%; display: grid; place-items: center; color: var(--accent-2); border: 2.5px solid var(--m3);
+  background: radial-gradient(circle at 50% 20%, #fff 0, var(--m1) 30%, var(--m2) 100%); box-shadow: inset 0 2px 2px #fff, inset 0 -4px 6px color-mix(in srgb, var(--m4) 35%, transparent), 0 2px 4px rgba(130,90,120,.3); transition: transform .12s; }
+.hub .ic { width: 22px; height: 22px; filter: drop-shadow(0 1px 0 #fff); }
+.hub:active { transform: scale(.92); }
+.lcd { position: relative; isolation: isolate; flex: 1; min-width: 0; min-height: 116px; border-radius: 42px; padding: 12px 16px 10px; display: flex; flex-direction: column; justify-content: space-between; gap: 4px;
+  background: linear-gradient(180deg, var(--lcd-a), var(--lcd-b)); border: 2.5px solid var(--m3);
+  box-shadow: inset 0 3px 8px color-mix(in srgb, var(--m4) 45%, transparent), inset 0 -2px 0 rgba(255,255,255,.7), 0 0 0 2px #fff; }
+.lcd::after { content: ""; position: absolute; z-index: -1; left: 8px; right: 8px; top: 3px; height: 42%; border-radius: 38px 38px 60% 60% / 38px 38px 28px 28px; background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,0)); pointer-events: none; }
+.lcd-top { display: flex; align-items: center; gap: 9px; min-width: 0; }
+.art { width: 44px; height: 44px; flex: none; border-radius: 15px; overflow: hidden; position: relative; border: 2px solid #fff; box-shadow: 0 0 0 1.5px var(--m3);
+  background: repeating-conic-gradient(color-mix(in srgb, var(--ging) 60%, transparent) 0 25%, transparent 0 50%) 0 0 / 14px 14px, linear-gradient(160deg, #fff, var(--fill-a)); }
 .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .art .ph { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; filter: drop-shadow(0 1px 0 var(--accent-2)); }
-.art .ph .ic { width: 38%; height: 38%; }
-.ribbon { position: absolute; left: -8px; top: -10px; width: 36px; height: 36px; color: var(--ring); filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff); z-index: 2; pointer-events: none; }
-.meta { min-width: 0; display: flex; flex-direction: column; }
-.title { font-family: var(--font-display); font-weight: 400; font-size: 23px; line-height: 1.12; margin: 2px 0 3px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-wrap: balance; overflow-wrap: anywhere; color: var(--accent); }
-.artist { color: var(--ink-2); font-size: 14px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.cta { align-self: flex-start; margin-top: 8px; background: linear-gradient(180deg, var(--accent-2), var(--accent)); color: #fff; font-weight: 700; font-size: 13px; padding: 7px 14px; border-radius: 99px; border: 2px solid #fff; box-shadow: 0 0 0 2px var(--ring); }
-.ctrls { display: flex; align-items: center; justify-content: space-between; margin: 10px 0 6px; padding: 0 4px; color: var(--accent-2); }
-.ctrls button { width: 38px; height: 38px; display: grid; place-items: center; transition: transform .15s; }
-.ctrls button:active { transform: scale(.88); }
-.ctrls #bPlay { width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(180deg, var(--accent-2), var(--accent)); color: #fff; border: 3px solid #fff; box-shadow: 0 0 0 3px var(--ring), var(--lift); }
-.ctrls #bPlay .ic { width: 22px; height: 22px; margin: auto; }
-.ctrls #bPrev .ic, .ctrls #bNext .ic { width: 26px; height: 26px; margin: auto; }
-.scrub { -webkit-appearance: none; appearance: none; width: 100%; height: 14px; background: transparent; margin: 0; --p: 0%; touch-action: pan-y; }
-.scrub::-webkit-slider-runnable-track { height: 8px; border-radius: 8px; border: 2px solid #fff; background: linear-gradient(90deg, var(--accent-2) var(--p), var(--ring2) var(--p)); box-shadow: 0 0 0 1.5px var(--ring); }
-.scrub::-moz-range-track { height: 8px; border-radius: 8px; background: var(--ring2); border: 2px solid #fff; }
-.scrub::-moz-range-progress { height: 8px; border-radius: 8px; background: var(--accent-2); }
-.scrub::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -6px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); }
-.scrub::-moz-range-thumb { width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); }
-.times { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: var(--ink-2); font-variant-numeric: tabular-nums; margin-top: 2px; }
+.art .ph .ic { width: 50%; height: 50%; }
+.meta { min-width: 0; flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
+.title { max-width: 100%; font-family: var(--font-display); font-weight: 400; font-size: 17px; line-height: 1.15; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.artist { max-width: 100%; color: var(--ink-2); font-size: 12.5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cta { margin-top: 3px; background: linear-gradient(180deg, var(--accent-2), var(--accent)); color: #fff; font-weight: 700; font-size: 11px; padding: 3px 10px; border-radius: 99px; border: 2px solid #fff; box-shadow: 0 0 0 1.5px var(--ring); }
+.scrub { -webkit-appearance: none; appearance: none; width: 100%; height: 12px; background: transparent; margin: 0; --p: 0%; touch-action: pan-y; }
+.scrub::-webkit-slider-runnable-track { height: 6px; border-radius: 6px; background: linear-gradient(90deg, var(--accent-2) var(--p), color-mix(in srgb, var(--m4) 30%, transparent) var(--p)); box-shadow: inset 0 1px 1px rgba(0,0,0,.12); }
+.scrub::-moz-range-track { height: 6px; border-radius: 6px; background: color-mix(in srgb, var(--m4) 30%, transparent); }
+.scrub::-moz-range-progress { height: 6px; border-radius: 6px; background: var(--accent-2); }
+.scrub::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; margin-top: -4px; border-radius: 50%; background: radial-gradient(circle at 50% 30%, #fff, var(--m2)); border: 2px solid var(--m4); box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.scrub::-moz-range-thumb { width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--m4); }
+.times { display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 700; color: color-mix(in srgb, var(--ink-2) 85%, #555); font-variant-numeric: tabular-nums; }
 
 /* sliders */
 .vs { grid-row: 4 / 6; align-self: stretch; display: flex; touch-action: none; cursor: ns-resize; --v: 50%; min-height: 190px; }
@@ -322,6 +333,56 @@ img { max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ===== carved baby-pink metal: raised plates with recessed, engraved insets ===== */
+:root { --m1: #fff; --m2: color-mix(in srgb, var(--tile-b) 45%, #f3f3f7); --m3: color-mix(in srgb, var(--ring) 50%, #cfcfd9); --m4: color-mix(in srgb, var(--ink-2) 40%, #a9a9bb);
+  --lcd-a: color-mix(in srgb, var(--tile-b) 55%, #f1e8fb); --lcd-b: color-mix(in srgb, var(--ring) 40%, #e4d6f3);
+  --engrave: color-mix(in srgb, var(--accent) 60%, #8f8499);
+  --brush: repeating-linear-gradient(90deg, rgba(255,255,255,.3) 0 1px, transparent 1px 3px);
+  --plate: var(--brush), linear-gradient(180deg, var(--m1) 0%, var(--m2) 55%, var(--m3) 100%);
+  --raise: inset 0 2px 1px #fff, inset 0 -4px 7px color-mix(in srgb, var(--m4) 35%, transparent), 0 0 0 1.5px #fff, 0 6px 12px rgba(130,90,120,.22);
+  --carve: inset 0 3px 6px color-mix(in srgb, var(--m4) 55%, transparent), inset 0 -1.5px 0 #fff, 0 1.5px 0 #fff; }
+body { background: linear-gradient(180deg, #fff8fb, #f8ebf1 55%, #f0e3ea); }
+body::before { opacity: .38; }
+/* raised metal plates */
+.cat-body, .hbtn, .status, .sheet, .card, .side, .mini, .pc-cover, .toast, .side-page, .btn, .field-wrap {
+  background: var(--plate); border: 2px solid var(--m3); box-shadow: var(--raise); }
+.cat.deep .cat-body { background: linear-gradient(180deg, var(--lcd-b), var(--lcd-a)); box-shadow: var(--carve), 0 0 0 1.5px var(--m3), 0 0 0 3px #fff; }
+.cat .ear, .ears::before, .ears::after, .hbtn::before, .hbtn::after, .pc-cover::before, .pc-cover::after { background: var(--m2); border-color: var(--m3); }
+.hbtn { color: var(--engrave); }
+.sheet { border-bottom: 0; } .side { border-left: 0; }
+.scrim, .side-scrim { background: rgba(110,80,100,.25); }
+/* recessed wells */
+.vsbody { background: linear-gradient(90deg, var(--lcd-b), var(--lcd-a) 40%, var(--lcd-b)); box-shadow: var(--carve), 0 0 0 1.5px var(--m3), 0 0 0 3px #fff; border: 0; }
+.vs-fill { background: linear-gradient(180deg, color-mix(in srgb, var(--accent-2) 70%, #fff), var(--accent-2) 40%, var(--accent)); box-shadow: inset 0 2px 1px rgba(255,255,255,.8), inset 0 -3px 5px rgba(0,0,0,.12); }
+.art, .thumb, .cv, .pc-img, .cvbtn .cv { background: linear-gradient(160deg, var(--lcd-a), var(--lcd-b)); border: 2px solid #fff; box-shadow: var(--carve), 0 0 0 1.5px var(--m3); }
+.pc-img { border: 0; inset: 5px; }
+.pc-cover { background: var(--plate); }
+.field { background: color-mix(in srgb, var(--tile-b) 40%, #fff); border: 2px solid var(--m3); box-shadow: inset 0 3px 5px color-mix(in srgb, var(--m4) 50%, transparent), 0 1.5px 0 #fff; color: var(--ink); }
+.row.cur, .side-row.active, .ch-row.in { background: linear-gradient(180deg, var(--lcd-b), var(--lcd-a)); border: 2px solid var(--m3); box-shadow: var(--carve); }
+.pcard.new .pc-cover { background: linear-gradient(180deg, var(--lcd-b), var(--lcd-a)); border-style: solid; box-shadow: var(--carve), 0 0 0 1.5px #fff; }
+.pcard.new .pc-cover::before, .pcard.new .pc-cover::after { border-style: solid; background: var(--m2); }
+.grab { background: var(--m3); box-shadow: inset 0 1px 2px rgba(0,0,0,.2), 0 1px 0 #fff; }
+#bSleep .moon, .act.tick { background: radial-gradient(circle at 50% 22%, #fff, var(--m2)); border: 2px solid var(--m3); box-shadow: inset 0 2px 1px #fff, inset 0 -3px 5px color-mix(in srgb, var(--m4) 35%, transparent), 0 2px 4px rgba(130,90,120,.25); color: var(--engrave); }
+#bSleep.on .moon, .act.tick.on { background: linear-gradient(180deg, var(--accent-2), var(--accent)); color: #fff; }
+/* pink metal buttons */
+.btn.primary, .cta, .mini-play, .side-new, .cam, .toast.pinky { background: linear-gradient(180deg, color-mix(in srgb, var(--accent-2) 60%, #fff) 0%, var(--accent-2) 45%, var(--accent) 100%); color: #fff; border: 2px solid color-mix(in srgb, var(--accent) 55%, #fff); box-shadow: inset 0 2px 1px rgba(255,255,255,.75), inset 0 -3px 5px rgba(150,40,90,.25), 0 3px 6px rgba(150,60,110,.3); text-shadow: 0 -1px 0 rgba(150,40,90,.35); }
+.btn { color: var(--engrave); }
+.btn.primary { color: #fff; }
+.btn.danger.armed { background: #d0467b; color: #fff; }
+/* engraved lettering and icons */
+.status, .sheet h2, .card h3, .side-title, .phead h1, .pc-name, .np b, .row .tx b, .side-row .tx b, .ch-row .tx b, .mini .tx b, #bSleep .lbl, #bQueue .qt b, #bQueue .deco, .side-page { color: var(--engrave); text-shadow: 0 1px 0 #fff, 0 -1px 0 color-mix(in srgb, var(--m4) 35%, transparent); }
+.title { color: var(--ink); text-shadow: 0 1px 0 rgba(255,255,255,.8); }
+.np small, .pc-sub, .side-label, .fld span, .vs-cap { text-shadow: 0 1px 0 #fff; }
+.vs-val, .np > .ic { text-shadow: 0 1px 0 #fff; }
+.npbody > .ic { color: var(--m4); filter: drop-shadow(0 1px 0 #fff); }
+.hbtn .ic, .side-x .ic, .act .ic, #bSleep .chev, .side-page .ic, .row .heart { filter: drop-shadow(0 1px 0 #fff); }
+.vsbody > .ic { color: var(--m4); filter: drop-shadow(0 1px 0 #fff); }
+.art .ph, .thumb .ic, .cv .ic, .pc-img .ic { color: var(--m4); filter: drop-shadow(0 1px 0 #fff); }
+.pcard.new .pc-cover .ic { color: var(--m4); }
+.pcard.active .pc-cover { border-color: var(--accent-2); box-shadow: var(--raise), 0 0 10px var(--accent-2); }
+.toast { color: var(--engrave); }
+@media (prefers-color-scheme: dark) { :root { color-scheme: light; } }
 
 /* ===== keyboard: the Pixel Kitten skin's own art, drawn on its 1080-unit grid. No fonts of mine on it, only the system font where the skin itself prints text. ===== */
 .kb { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding-bottom: env(safe-area-inset-bottom, 0px); background: #fff; box-shadow: 0 -4px 16px color-mix(in srgb, var(--glow) 35%, transparent);
